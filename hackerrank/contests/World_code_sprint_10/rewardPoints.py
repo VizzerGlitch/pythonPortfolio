@@ -1,27 +1,18 @@
+#!/bin/python3
+
 import sys
 
-def minimumDeletions(a):
+def getPoints(month1, month2, month3):
+    if(month1>10):
+        month1 = 10
+    if(month2>10):
+        month2 = 10
+    if(month3>10):
+        month3 = 10
+    return 10*(month1+month2+month3)
     
-    i = 2
-    if(len(a)<3):
-        return 0
-    dellen = len(a)
-
-    while True:
-        
-        if i >= len(a):
-            break
-        
-        if(a[i-2] > a[i-1] and a[i-1] > a[i]):
-            a.pop(i-1)
-        elif(a[i-2] < a[i-1] and a[i-1] < a[i]):
-            a.pop(i-1)        
-        else:
-            i += 1
-        
-    return dellen - len(a)
-
-n = int(input().strip())
-a = list(map(int, input().strip().split(' ')))
-result = minimumDeletions(a)
-print(result)
+    
+month1,month2,month3 = input().strip().split(' ')
+month1,month2,month3 = [int(month1),int(month2),int(month3)]
+pointsEarned = getPoints(month1, month2, month3)
+print(pointsEarned)

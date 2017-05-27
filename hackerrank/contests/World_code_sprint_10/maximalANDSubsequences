@@ -1,0 +1,29 @@
+#!/bin/python3
+
+import sys
+import itertools
+import operator, functools
+
+def solve(n, k, a):
+    # Complete this function
+    andMax = 0
+    counter = 0
+    for subset in itertools.combinations(a, k):  
+        andRes = functools.reduce(operator.and_, subset)
+        if andRes > andMax:
+            counter = 1
+            andMax = andRes
+        elif andRes == andMax:
+            counter += 1
+            
+    return [andMax, counter]
+        
+n, k = input().strip().split(' ')
+n, k = [int(n), int(k)]
+a = []
+a_i = 0
+for a_i in range(n):
+    a_t = int(input().strip())
+    a.append(a_t)
+result = solve(n, k, a)
+print ("\n".join(map(str, result)))
